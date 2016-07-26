@@ -14,21 +14,14 @@ public class OrdenacaoInsercao {
         int chave = 0;
         System.out.println("tamanho do vetor: " + vet.length);
 
-        for (int i = 0; i <= vet.length - 1; i++) {
-
-            chave = vet[i];
-
-            for (int j = 0; j <= vet.length - 2; j++) {
-
-                if (chave >= 0 && vet[j + 1] > chave) {
-                    chave = vet[j + 1];
-
-                } else {
-                    vet[j] = vet[j + 1];
-                    vet[j + 1] = chave;
-
-                }
-            }
+        for (int i = 0; i  < vet.length  ; i++) {
+            
+           chave = vet[i];
+           
+           for(int j = i - 1; j >= 0 && vet[j] > chave; j-- ){
+               vet[j] = vet[j+1];
+           }
+                
         }
 
         int t = 0;
