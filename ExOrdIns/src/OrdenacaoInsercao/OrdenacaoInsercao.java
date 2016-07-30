@@ -12,16 +12,19 @@ public class OrdenacaoInsercao {
 
         // int vet2[] = new int[4];
         int chave = 0;
+        int j = 0;
         System.out.println("tamanho do vetor: " + vet.length);
 
-        for (int i = 0; i  < vet.length  ; i++) {
-            
-           chave = vet[i];
-           
-           for(int j = i - 1; j >= 0 && vet[j] > chave; j-- ){
-               vet[j] = vet[j+1];
-           }
-                
+        for (int i = 1; i < vet.length; i++) {
+
+            chave = vet[i];
+            System.out.println("Chave: "+chave+" Vetor ["+vet[i]+"]");
+
+            for ( j = i-1; j >= 0 && vet[j] > chave; j--) {
+                vet[j+1] = vet[j];
+            }
+            vet[j+1] = chave;
+
         }
 
         int t = 0;
