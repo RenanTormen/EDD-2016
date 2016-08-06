@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class CadastroAluno extends javax.swing.JFrame {
 
-    Aluno al = new Aluno();
+    
     
     
     public CadastroAluno() {
@@ -36,7 +36,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         btEfetuaCadastro = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbRA.setText("RA do Aluno:");
 
@@ -92,11 +92,13 @@ public class CadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEfetuaCadastroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEfetuaCadastroMousePressed
+        Aluno al = new Aluno();
         al.setRa(Integer.parseInt(txtRA.getText()));
         al.setNome(txtNomeAluno.getText());
         JFramePrincipla.lt.cadastroAluno(al);
         JOptionPane.showMessageDialog(null, "Aluno "+JFramePrincipla.lt.getAluno(al.getRa()).getNome()+" Cadastrado com sucesso!");
-        System.out.println(JFramePrincipla.lt.toString());
+        System.out.println(JFramePrincipla.lt.tst());
+        al = null;
     }//GEN-LAST:event_btEfetuaCadastroMousePressed
 
     /**

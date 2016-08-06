@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ex2;
 
 /**
@@ -27,13 +23,21 @@ public class JFramePrincipla extends javax.swing.JFrame {
     private void initComponents() {
 
         btCadastro = new javax.swing.JButton();
+        btOrdenar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btCadastro.setText("jButton1");
+        btCadastro.setText("Cadastro de Aluno");
         btCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btCadastroMousePressed(evt);
+            }
+        });
+
+        btOrdenar.setText("Imprimir Lista Ordenada");
+        btOrdenar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btOrdenarMousePressed(evt);
             }
         });
 
@@ -42,16 +46,20 @@ public class JFramePrincipla extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(btCadastro)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(112, 112, 112)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+                    .addComponent(btCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(btCadastro)
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(btCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -61,6 +69,13 @@ public class JFramePrincipla extends javax.swing.JFrame {
         CadastroAluno cn = new CadastroAluno();
         cn.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_btCadastroMousePressed
+
+    private void btOrdenarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdenarMousePressed
+        JFrameOrdena j = new JFrameOrdena();
+        JFrameOrdena.populaLista();
+        System.out.println(JFramePrincipla.lt.toString());
+        j.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btOrdenarMousePressed
 
     /**
      * @param args the command line arguments
@@ -112,5 +127,6 @@ public class JFramePrincipla extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastro;
+    private javax.swing.JButton btOrdenar;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,7 +11,7 @@ public class ListaAlunos {
     }
 
     public Aluno getAluno(int RA) {
-        for (int i = 0; i != this.al.size(); i++) {
+        for (int i = 0; i < this.al.size(); i++) {
             if (this.al.get(i).getRa() == RA) {
                 return this.al.get(i);
             }
@@ -19,11 +19,23 @@ public class ListaAlunos {
         return null;
     }
 
-    @Override
-    public String toString() {
-        for (int i = 0; i != this.al.size(); i++) {
-            return "[" + this.al.get(i).getNome() + "";
-        }
-        return "";
+    public int tamanhoLista() {
+        return this.al.size();
     }
-}
+
+    public String tst() {
+        String s = "";
+        int i = 0;
+        while (this.al.iterator().hasNext() && i != al.size()) {
+            s += this.al.get(i).getNome();
+            i++;
+        }
+
+        return s;
+    }
+
+    public Aluno getLista(int i) {
+        return al.get(i);
+        }
+    }
+
