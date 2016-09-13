@@ -11,48 +11,74 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class TelaPrincipal extends JFrame{
-	
-	JPanel panelBotoes = new JPanel();
-	GridLayout layoutPanel = new GridLayout(2,2,2,2);
-	BorderLayout layoutFrame = new BorderLayout();
-	JButton botaoCadastro = new JButton("Cadastrar Pokemon");
-	JButton botaoBatalha = new JButton("INICIAR A FODENDO BATALHA");
-	JButton botaoMostrarPkmn = new JButton("AMOSTRA AS TRETA TUDO");
-	JButton botaoSair = new JButton("ARREGA, SEU BOSTINHA");
-	JLabel  labelConfia = new JLabel("TRUNFO DO POKEMAO DO SUCESSO DO J DE CONFIA");
-	public void initComponents(){
+import com.br.logica.Vetor;
+
+public class TelaPrincipal extends JFrame {
+
+	public static Vetor pokemao = new Vetor();
+	private JPanel panelBotoes = new JPanel();
+	private GridLayout layoutPanel = new GridLayout(2, 2, 2, 2);
+	private BorderLayout layoutFrame = new BorderLayout();
+	private JButton botaoCadastro = new JButton("Cadastrar Pokemon");
+	private JButton botaoBatalha = new JButton("INICIAR A BATALHA");
+	private JButton botaoMostrarPkmn = new JButton("POKEDEX");
+	private JButton botaoSair = new JButton("SAIR DO JOGO");
+	private JLabel labelConfia = new JLabel("TRUNFO DO POKEMON - TRABALHO 3 BIMESTRE");
+
+	public void initComponents() {
 		setVisible(true);
+		setLocationRelativeTo(null);
 		layoutFrame.setVgap(10);
 		panelBotoes.setLayout(layoutPanel);
 		panelBotoes.add(botaoCadastro);
 		panelBotoes.add(botaoBatalha);
 		panelBotoes.add(botaoMostrarPkmn);
 		panelBotoes.add(botaoSair);
-		
+
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		Dimension tamanhoMonitor = Toolkit.getDefaultToolkit().getScreenSize();
 		labelConfia.setFont(new Font("Chiller", Font.BOLD, 22));
 		this.setLayout(layoutFrame);
-		this.add(layoutFrame.PAGE_START,labelConfia);
-		this.setBounds(0,0, (int)tamanhoMonitor.getWidth()/2, (int)tamanhoMonitor.getHeight()/2);
+		this.add(layoutFrame.PAGE_START, labelConfia);
+		// this.setBounds(0, 0, (int) tamanhoMonitor.getWidth() / 2, (int)
+		// tamanhoMonitor.getHeight() / 2);
 		this.add(panelBotoes);
-		this.repaint();
-		//this.pack();
-		
+		// this.repaint();
+		this.pack();
+
 	}
 
-	public void initListeners(){
+	public void initListeners() {
+
+		botaoCadastro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroPokemon tl = new TelaCadastroPokemon();
+
+			}
+		});
+		
+		botaoMostrarPkmn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TelaPokedex dex = new TelaPokedex();
+				
+			}
+		});
 		
 		botaoBatalha.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroPokemon tp = new TelaCadastroPokemon();
+				TelaBatalhaPlayer player1 = new TelaBatalhaPlayer();
 				
 			}
 		});
 	}
 	
+		
 	public static void main(String[] args) {
 		TelaPrincipal tl = new TelaPrincipal();
 		tl.initComponents();

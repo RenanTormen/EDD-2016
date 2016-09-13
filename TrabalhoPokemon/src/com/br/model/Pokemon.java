@@ -2,11 +2,21 @@ package com.br.model;
 
 public class Pokemon {
 
+	private int numero;
 	private String nomePokemon;
 	private int forca;
 	private int ataque;
 	private int defesa;
 	private int agilidade;
+
+	
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 
 	public String getNomePokemon() {
 		return nomePokemon;
@@ -46,6 +56,11 @@ public class Pokemon {
 
 	public void setAgilidade(int agilidade) {
 		this.agilidade = agilidade;
+	}
+	@Override
+	public String toString(){
+		
+		return this.getNumero()+" - "+this.getNomePokemon();
 	}
 
 }
