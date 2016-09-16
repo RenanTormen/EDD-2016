@@ -8,14 +8,20 @@ import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.*;
 
 import com.br.logica.Vetor;
+import com.br.model.Player;
 
 public class TelaPrincipal extends JFrame {
 
 	public static Vetor pokemao = new Vetor();
+	public static TelaBatalhaFinal batalha = null;
+	public static TelaBatalhaPlayer player1 = null;
+	public static TelaBatalhaPlayer player2 = null;
 	private JPanel panelBotoes = new JPanel();
 	private GridLayout layoutPanel = new GridLayout(2, 2, 2, 2);
 	private BorderLayout layoutFrame = new BorderLayout();
@@ -58,27 +64,120 @@ public class TelaPrincipal extends JFrame {
 
 			}
 		});
-		
+
 		botaoMostrarPkmn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TelaPokedex dex = new TelaPokedex();
-				
+
 			}
 		});
-		
+
 		botaoBatalha.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TelaBatalhaPlayer player1 = new TelaBatalhaPlayer();
-				
+				if (!(player1 instanceof TelaBatalhaPlayer)) {
+					player1 = new TelaBatalhaPlayer();
+					if (!player1.isPronto()) {
+						player1.addWindowListener(new WindowListener() {
+
+							@Override
+							public void windowOpened(WindowEvent e) {
+								JOptionPane.showMessageDialog(null, "Player 1, escolha seus pokemons");
+
+							}
+
+							@Override
+							public void windowIconified(WindowEvent e) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void windowDeiconified(WindowEvent e) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void windowDeactivated(WindowEvent e) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void windowClosing(WindowEvent e) {
+								// TODO Auto-generated method stub
+
+							}
+
+							@Override
+							public void windowClosed(WindowEvent e) {
+								player2 = new TelaBatalhaPlayer();
+								player2.addWindowListener(new WindowListener() {
+
+									@Override
+									public void windowOpened(WindowEvent e) {
+										JOptionPane.showMessageDialog(null, "Player 2, escolha seus Pokemons!");
+
+									}
+
+									@Override
+									public void windowIconified(WindowEvent e) {
+										// TODO Auto-generated method stub
+
+									}
+
+									@Override
+									public void windowDeiconified(WindowEvent e) {
+										// TODO Auto-generated method stub
+
+									}
+
+									@Override
+									public void windowDeactivated(WindowEvent e) {
+										// TODO Auto-generated method stub
+
+									}
+
+									@Override
+									public void windowClosing(WindowEvent e) {
+										// TODO Auto-generated method stub
+
+									}
+
+									@Override
+									public void windowClosed(WindowEvent e) {
+										 batalha = new TelaBatalhaFinal();
+
+									}
+
+									@Override
+									public void windowActivated(WindowEvent e) {
+										// TODO Auto-generated method stub
+
+									}
+								});
+
+							}
+
+							@Override
+							public void windowActivated(WindowEvent e) {
+								// TODO Auto-generated method stub
+
+							}
+						});
+					} else {
+						TelaBatalhaFinal batalha = new TelaBatalhaFinal();
+					}
+
+				}
 			}
 		});
 	}
-	
-		
+
 	public static void main(String[] args) {
 		TelaPrincipal tl = new TelaPrincipal();
 		tl.initComponents();

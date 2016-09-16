@@ -5,6 +5,15 @@ import java.util.ArrayList;
 public class Player {
 
 	private ArrayList<Pokemon> selecaoPokemons = new ArrayList<>();
+	private boolean pronto = false;
+
+	public boolean isPronto() {
+		return pronto;
+	}
+
+	public void setPronto(boolean pronto) {
+		this.pronto = pronto;
+	}
 
 	public Player() {
 		ordenaInsercao();

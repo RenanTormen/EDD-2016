@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -28,6 +29,7 @@ import com.br.model.Pokemon;
 public class TelaBatalhaPlayer extends JFrame {
 
 	private int maxPokemon = 0;
+	private Player player = new Player();
 	private JTextField fieldNome = new JTextField();
 	private JTextField fieldAtk = new JTextField();
 	private JTextField fieldDef = new JTextField();
@@ -36,6 +38,10 @@ public class TelaBatalhaPlayer extends JFrame {
 	private JComboBox jComboPkmn = new JComboBox();
 	private DefaultListModel<Pokemon> model = new DefaultListModel<Pokemon>();
 	private JList listaEscolhidos = new JList();
+	public JList getListaEscolhidos() {
+		return listaEscolhidos;
+	}
+
 	private JScrollPane sPane = new JScrollPane(listaEscolhidos);
 	private JButton botaoEscolhe = new JButton("Escolher Pokemon");
 	private JButton botaoConfirma = new JButton("Confirmar lista de Pokemons");
@@ -43,23 +49,17 @@ public class TelaBatalhaPlayer extends JFrame {
 	private Box boxEscolha = new Box(BoxLayout.Y_AXIS);
 	private Box boxFields = new Box(BoxLayout.Y_AXIS); 
 	private Box boxLista = new Box(BoxLayout.Y_AXIS);
+	private boolean pronto = false;
 	
 	
+
+
 	public TelaBatalhaPlayer() {
 		populaCoisas();
 		initComponents();
 		initListeners();
-		 
-	}
-	public void setPlayers(){
-		for(int i = 0; i != 2; i++){
-			Player player1 = new Player();
-			player1.insere(pokemon);
-		}
-		
 	}
 
-	
 	public void initComponents() {
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -126,6 +126,16 @@ public class TelaBatalhaPlayer extends JFrame {
 			}
 		});
 		
+		botaoConfirma.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setPronto(true);
+				dispose();
+				
+			}
+		});
+		
 	}
 	
 	public void populaCoisas(){
@@ -134,7 +144,23 @@ public class TelaBatalhaPlayer extends JFrame {
 		this.jComboPkmn.addItem(TelaPrincipal.pokemao.retornaPokemon(i));
 		}
 		
+		
 	}
 	
+	public boolean isPronto() {
+		return pronto;
+	}
+
+	public void setPronto(boolean pronto) {
+		this.pronto = pronto;
+	}
+
+	public DefaultListModel<Pokemon> getModel() {
+		return model;
+	}
+	
+	public Player getPlayer(){
+		return this.player;
+	}
 
 }
