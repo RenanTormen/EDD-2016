@@ -78,8 +78,13 @@ public class TelaPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				if (!(player1 instanceof TelaBatalhaPlayer)) {
 					player1 = new TelaBatalhaPlayer();
+					player2 = new TelaBatalhaPlayer();
+					player2.setVisible(false);
+					checkPronto();
+
 					if (!player1.isPronto()) {
 						player1.addWindowListener(new WindowListener() {
 
@@ -115,52 +120,9 @@ public class TelaPrincipal extends JFrame {
 
 							@Override
 							public void windowClosed(WindowEvent e) {
-								player2 = new TelaBatalhaPlayer();
-								player2.addWindowListener(new WindowListener() {
-
-									@Override
-									public void windowOpened(WindowEvent e) {
-										JOptionPane.showMessageDialog(null, "Player 2, escolha seus Pokemons!");
-
-									}
-
-									@Override
-									public void windowIconified(WindowEvent e) {
-										// TODO Auto-generated method stub
-
-									}
-
-									@Override
-									public void windowDeiconified(WindowEvent e) {
-										// TODO Auto-generated method stub
-
-									}
-
-									@Override
-									public void windowDeactivated(WindowEvent e) {
-										// TODO Auto-generated method stub
-
-									}
-
-									@Override
-									public void windowClosing(WindowEvent e) {
-										// TODO Auto-generated method stub
-
-									}
-
-									@Override
-									public void windowClosed(WindowEvent e) {
-										 batalha = new TelaBatalhaFinal();
-
-									}
-
-									@Override
-									public void windowActivated(WindowEvent e) {
-										// TODO Auto-generated method stub
-
-									}
-								});
-
+								JOptionPane.showMessageDialog(null, "Player 2 Escolha seus Pokemons");
+								player2.setVisible(true);
+							
 							}
 
 							@Override
@@ -168,14 +130,26 @@ public class TelaPrincipal extends JFrame {
 								// TODO Auto-generated method stub
 
 							}
+
 						});
-					} else {
-						TelaBatalhaFinal batalha = new TelaBatalhaFinal();
+
 					}
 
+				} else {
+					checkPronto();
+					botaoBatalha.getAction();
 				}
 			}
 		});
+
+	}
+	
+	public void checkPronto(){
+		if(player1.isPronto() && player2.isPronto()){
+			TelaBatalhaFinal batalha = new TelaBatalhaFinal();
+			JOptionPane.showMessageDialog(null, "HORA DA BATALHA");
+			batalha.setVisible(true);	
+		}
 	}
 
 	public static void main(String[] args) {

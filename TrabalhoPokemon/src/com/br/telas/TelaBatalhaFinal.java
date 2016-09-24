@@ -22,7 +22,7 @@ import com.br.model.Pokemon;
 public class TelaBatalhaFinal extends JFrame {
 
 	private Box player = new Box(BoxLayout.Y_AXIS);
-	private JScrollPane scroll = new JScrollPane(TelaPrincipal.player1.getListaEscolhidos());
+	private JScrollPane scroll = new JScrollPane();
 	private int i = 1;
 	private JButton botaoProximo = new JButton("Escolher");
 	private JRadioButton radioAtk = new JRadioButton("Ataque");
@@ -32,8 +32,10 @@ public class TelaBatalhaFinal extends JFrame {
 	private ButtonGroup grupo = new ButtonGroup();
 	private Box opcoesCompara = new Box(BoxLayout.X_AXIS);
 	private int playerRodada = 1;
+	TelaBatalhaFinal tela2 = null;
 
 	public TelaBatalhaFinal() {
+
 		initComponents();
 		initListeners();
 	}
@@ -72,25 +74,48 @@ public class TelaBatalhaFinal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (playerRodada == 1) {
+					scroll = new JScrollPane(TelaPrincipal.player1.getListaEscolhidos());
+					scroll.validate();
+					pack();
 					Pokemon p1Sel = new Pokemon();
-					JOptionPane.showMessageDialog(null,
-							"Player 1, Você escolheu o pokemon: " + TelaPrincipal.player1.getModel()
-									.getElementAt(TelaPrincipal.player1.getListaEscolhidos().getSelectedIndex())
-									.getNomePokemon()+"Com o atrib: "+checaAtributo());
+					JOptionPane
+							.showMessageDialog(null,
+									"Player 1, Você escolheu o pokemon: "
+											+ TelaPrincipal.player1.getModel()
+													.getElementAt(TelaPrincipal.player1.getListaEscolhidos()
+															.getSelectedIndex())
+													.getNomePokemon()
+											+ "Com o atrib: " + checaAtributo());
 					p1Sel = TelaPrincipal.player1.getModel()
 							.getElementAt(TelaPrincipal.player1.getListaEscolhidos().getSelectedIndex());
 					playerRodada = 2;
-					
-				} else if (playerRodada == 2) {
-					Pokemon p1Sel = new Pokemon();
-					JOptionPane.showMessageDialog(null,
-							"Player 2, Você escolheu o pokemon: " + TelaPrincipal.player1.getModel()
-									.getElementAt(TelaPrincipal.player1.getListaEscolhidos().getSelectedIndex())
-									.getNomePokemon()+" Com o atributo: "+checaAtributo());
-					p1Sel = TelaPrincipal.player1.getModel()
-							.getElementAt(TelaPrincipal.player1.getListaEscolhidos().getSelectedIndex());
-					playerRodada = 1;
+					dispose();
+				}
+				if (playerRodada == 2) {
+					tela2.scroll = null;
+					TelaBatalhaFinal tela2 = new TelaBatalhaFinal();
+					tela2.scroll = new JScrollPane(TelaPrincipal.player2.getListaEscolhidos());
+					tela2.pack();
+					tela2.setVisible(true);
 
+					tela2.botaoProximo.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Pokemon p2Sel = new Pokemon();
+							JOptionPane.showMessageDialog(null,
+									"Player 2, Você escolheu o pokemon: "
+											+ TelaPrincipal.player2.getModel()
+													.getElementAt(TelaPrincipal.player2.getListaEscolhidos()
+															.getSelectedIndex())
+													.getNomePokemon()
+											+ "Com o atrib: " + checaAtributo());
+							p2Sel = TelaPrincipal.player2.getModel()
+									.getElementAt(TelaPrincipal.player2.getListaEscolhidos().getSelectedIndex());
+							// playerRodada = 2;
+
+						}
+					});
 				}
 			}
 		});
